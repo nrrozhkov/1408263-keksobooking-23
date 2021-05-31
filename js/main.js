@@ -17,9 +17,9 @@ function getRandomDecimal(min, max, decimalDigits) {
     return getRandomDecimal(0, min);
   }
   if (min >= 0 && max >= 0) {
-    const rand = min - 0.5 + Math.random() * (max - min + 1);
-    return rand.toFixed(decimalDigits);
+    const rand = Math.random() * (max - min) + min;
+    return +rand.toFixed(decimalDigits);
   }
 }
-getRandomDecimal(2, 3, 100);
+getRandomDecimal();
 
