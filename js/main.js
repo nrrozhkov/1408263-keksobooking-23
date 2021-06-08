@@ -89,9 +89,11 @@ const locationValue = function () {
   return `${lat()} ${lng()}`;
 };
 
+// eslint-disable-next-line no-unused-vars
 const randomData = new Array(10).fill(null).map(() => ({
   author: author(),
   offer: offer(),
-  locationValue: locationValue(),
+  location: locationValue(),
 }));
+
 
