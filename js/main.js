@@ -77,4 +77,3 @@ const randomItems = [...Array(randomItem)].fill(null).map(() => ({
   offer: getOffer(),
   location: getLocationValue(),
 }));
-console.log(randomItems);
