@@ -30,4 +30,10 @@ const getLocationValue = function () {
   return `${getLat()} ${getLng()}`;
 };
 
-export {getAuthor, getOffer, getLocationValue, randomItem};
+const randomItems = [...Array(randomItem)].fill(null).map(() => ({
+  author: getAuthor(),
+  offer: getOffer(),
+  location: getLocationValue(),
+}));
+
+export {randomItems};
