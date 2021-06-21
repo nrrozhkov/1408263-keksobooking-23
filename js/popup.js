@@ -14,6 +14,8 @@ const createPopupImage = (imageArray, imageContainer) => {
       photo.alt = 'Фотография жилья';
       photo.src = photoSrc;
       imageContainer.appendChild(photo);
+      console.log(photoSrc);
+      console.log(photo.src);
     });
   }
 };
@@ -36,8 +38,10 @@ newArticle.forEach((element) => {
   article.querySelector('.popup__text--time').textContent = `Заезд после ${  element.offer.checkin  } выезд до ${  element.offer.checkout}`;
   article.querySelector('.popup__features').textContent = element.offer.features;
   article.querySelector('.popup__description').textContent = element.offer.description;
-  article.querySelector('.popup__photo').innerHTML = createPopupImage(element.offer.photos, photoContainer);
+  article.querySelector('.popup__photo').textContent = createPopupImage(element.offer.photoShuffles, photoContainer);
+  console.log(createPopupImage(element.offer.photoShuffles, photoContainer));
   article.querySelector('.popup__description').src = element.author;
+
   contentCheck(article);
   container.appendChild(article);
 });
