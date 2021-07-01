@@ -1,7 +1,7 @@
 import { randomItems } from './data.js';
 const photoWidth = 45;
 const photoHeight = 40;
-const container = document.querySelector('#map-canvas');
+const mapContainer = document.querySelector('#map-canvas');
 const card = document.querySelector('#card').content.querySelector('.popup');
 const HOUSING_TYPE_DICTIONARY = { bungalow: 'Бунгало', flat: 'Квартира', hotel: 'Отель', house: 'Дом', palace: 'Дворец' };
 const houseType = (name) => HOUSING_TYPE_DICTIONARY[name];
@@ -14,42 +14,46 @@ const createPhotoElement = (element, parentContainer) => {
   photo.src = element;
   parentContainer.appendChild(photo);
 };
-const contentEmptyCheck = (content) => {
-  if (!content.textContent.length) {
-    content.remove();
+const addOrHide = (container, selector, content) => {
+  const element = container.querySelector(selector);
+  if(content) {
+    element.textContent = content;
+    return;
   }
+  element.remove();
 };
-const createPopupImage = (imageArray, imageContainer) => {
-  if (imageArray) {
-    imageArray.forEach((photoSrc) => {
+
+const createPopupImage = (images, imageContainer) => {
+  if (images) {
+    images.forEach((photoSrc) => {
       createPhotoElement(photoSrc, imageContainer);
     });
+    return;
   }
+  imageContainer.remove();
 };
-const createNewPost = (element) => {
+const createNewPost = ({offer, author}) => {
   const article = card.cloneNode(true);
   const photoContainer = article.querySelector('.popup__photos');
-  contentEmptyCheck(article);
-
-  article.querySelector('.popup__title').textContent = element.offer.title;
-  article.querySelector('.popup__text--address').textContent = element.offer.address;
-  article.querySelector('.popup__text--price').textContent = `${element.offer.price}₽/ночь`;
-  article.querySelector('.popup__type').textContent = houseType(element.offer.type);
-  article.querySelector('.popup__text--capacity').textContent = `${element.offer.rooms} комнаты для ${element.offer.guests} гостей`;
-  article.querySelector('.popup__text--time').textContent = `Заезд после ${element.offer.checkin} выезд до ${element.offer.checkout}`;
-  article.querySelector('.popup__features').textContent = element.offer.features;
-  article.querySelector('.popup__description').textContent = element.offer.description;
-  createPopupImage(element.offer.photos, photoContainer);
-  article.querySelector('.popup__description').src = element.author;
-  container.appendChild(article);
+  addOrHide(article, '.popup__title', offer.title);
+  addOrHide(article, '.popup__text--address', offer.address);
+  addOrHide(article, '.popup__text--price', `${offer.price}₽/ночь`);
+  addOrHide(article, '.popup__type', houseType(offer.type));
+  addOrHide(article, '.popup__text--capacity', `${offer.rooms} комнаты для ${offer.guests} гостей`);
+  addOrHide(article, '.popup__text--time', `Заезд после ${offer.checkin} выезд до ${offer.checkout}`);
+  addOrHide(article, '.popup__features', offer.features);
+  addOrHide(article, '.popup__description', offer.description);
+  createPopupImage(offer.photos, photoContainer);
+  article.querySelector('.popup__description').src = author;
+  mapContainer.appendChild(article);
 };
 
 
-const newArticle = randomItems();
+const articles = randomItems();
 
-newArticle.forEach((element) => {
-  createNewPost(element);
+articles.forEach((article) => {
+  createNewPost(article);
 });
 
 
-export { newArticle };
+export { articles };

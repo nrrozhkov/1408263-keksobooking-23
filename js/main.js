@@ -1,5 +1,7 @@
 import { randomItems } from './data.js';
-import { newArticle } from './popup.js';
+import { articles } from './popup.js';
+import  { mapLoadCheck }  from './form.js';
 randomItems;
-newArticle;
+articles;
+mapLoadCheck;
 
