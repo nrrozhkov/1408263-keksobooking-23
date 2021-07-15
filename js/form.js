@@ -19,7 +19,6 @@ const mapLoadCheck = () => {
 };
 
 const valueValidity = () => {
-  debugger;
   const value = houseTypeInput.value;
   const valuePrice = Number(overnightPrice.value);
   if (value === 'bungalow') {
