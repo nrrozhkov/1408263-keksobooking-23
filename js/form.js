@@ -1,9 +1,9 @@
-const roomsCounter = document.querySelector("#room_number");
-const houseCapacity = document.querySelector("#capacity");
-const houseTypeInput = document.querySelector("#type");
-const overnightPrice = document.querySelector("#price");
-const checkinTime = document.querySelector("#timein");
-const checkoutTime = document.querySelector("#timeout");
+const roomsCounter = document.querySelector('#room_number');
+const houseCapacity = document.querySelector('#capacity');
+const houseTypeInput = document.querySelector('#type');
+const overnightPrice = document.querySelector('#price');
+const checkinTime = document.querySelector('#timein');
+const checkoutTime = document.querySelector('#timeout');
 const priceMap = {
   bungalow: 0,
   flat: 1000,
@@ -13,18 +13,18 @@ const priceMap = {
 };
 
 const mapLoadCheck = () => {
-  const articleForm = document.querySelector(".ad-form");
-  const mapFilters = document.querySelector(".map__filters");
+  const articleForm = document.querySelector('.ad-form');
+  const mapFilters = document.querySelector('.map__filters');
 
   const disableControls = () => {
-    articleForm.classList.add("ad-form--disabled");
-    mapFilters.classList.add("map__filters--disabled");
+    articleForm.classList.add('ad-form--disabled');
+    mapFilters.classList.add('map__filters--disabled');
   };
   disableControls();
 
-  window.addEventListener("load", () => {
-    articleForm.classList.add("ad-form");
-    mapFilters.classList.add("map__filters");
+  window.addEventListener('load', () => {
+    articleForm.classList.add('ad-form');
+    mapFilters.classList.add('map__filters');
   });
 };
 
@@ -40,10 +40,10 @@ const checkinCheckoutCheck = (hour) => {
   }
 };
 
-checkinTime.addEventListener("change", () => {
+checkinTime.addEventListener('change', () => {
   checkinCheckoutCheck(checkinTime);
 });
-checkoutTime.addEventListener("change", () => {
+checkoutTime.addEventListener('change', () => {
   checkinCheckoutCheck(checkoutTime);
 });
 checkinCheckoutCheck(checkinTime);
@@ -59,11 +59,11 @@ const valueValidity = () => {
   placeHolderChange();
   minPriceChange();
 };
-overnightPrice.addEventListener("input", () => {
+overnightPrice.addEventListener('input', () => {
   valueValidity();
 });
 
-houseTypeInput.addEventListener("input", () => {
+houseTypeInput.addEventListener('input', () => {
   valueValidity();
 });
 
@@ -76,7 +76,7 @@ const setEnabled = (value) => {
   const houseCapacityValue = houseCapacity.options[value];
   return (houseCapacityValue.disabled = false);
 };
-roomsCounter.addEventListener("change", () => {
+roomsCounter.addEventListener('change', () => {
   const roomValue = Number(roomsCounter.value);
   if (roomValue === 1) {
     setDisabled(3), setDisabled(1), setDisabled(0), setEnabled(2);
