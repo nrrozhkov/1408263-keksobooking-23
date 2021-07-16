@@ -4,9 +4,6 @@ const houseTypeInput = document.querySelector("#type");
 const overnightPrice = document.querySelector("#price");
 const checkinTime = document.querySelector("#timein");
 const checkoutTime = document.querySelector("#timeout");
-console.log(checkinTime);
-console.log(checkoutTime);
-const minPlaceholderPrice = overnightPrice.min;
 const priceMap = {
   bungalow: 0,
   flat: 1000,
@@ -35,41 +32,39 @@ const checkinCheckoutCheck = (hour) => {
   const time = hour.value;
   const checkoutInput = checkoutTime.value;
   const checkinInput = checkinTime.value;
-  if (time != checkoutInput) {
+  if (time !== checkoutInput) {
     checkoutTime.value = time;
   }
-  if (time != checkinInput) {
+  if (time !== checkinInput) {
     checkinTime.value = time;
   }
 };
 
-checkinTime.addEventListener('change', () => {
+checkinTime.addEventListener("change", () => {
   checkinCheckoutCheck(checkinTime);
 });
-checkoutTime.addEventListener('change', () => {
+checkoutTime.addEventListener("change", () => {
   checkinCheckoutCheck(checkoutTime);
 });
 checkinCheckoutCheck(checkinTime);
 const valueValidity = () => {
   const houseType = houseTypeInput.value;
-  const price = Number(overnightPrice.value);
   const minHousePrice = priceMap[houseType];
   const placeHolderChange = () => {
     overnightPrice.placeholder = minHousePrice;
   };
   const minPriceChange = () => {
     overnightPrice.min = minHousePrice;
-  }
+  };
   placeHolderChange();
   minPriceChange();
 };
 overnightPrice.addEventListener("input", () => {
-    valueValidity();
+  valueValidity();
 });
 
 houseTypeInput.addEventListener("input", () => {
-    valueValidity();
- 
+  valueValidity();
 });
 
 const setDisabled = (value) => {
