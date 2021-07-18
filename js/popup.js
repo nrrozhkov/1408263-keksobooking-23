@@ -1,7 +1,6 @@
 import { randomItems } from './data.js';
 const photoWidth = 45;
 const photoHeight = 40;
-const mapContainer = document.querySelector('#map-canvas');
 const card = document.querySelector('#card').content.querySelector('.popup');
 const HOUSING_TYPE_DICTIONARY = { bungalow: 'Бунгало', flat: 'Квартира', hotel: 'Отель', house: 'Дом', palace: 'Дворец' };
 const houseType = (name) => HOUSING_TYPE_DICTIONARY[name];
@@ -16,7 +15,7 @@ const createPhotoElement = (element, parentContainer) => {
 };
 const addOrHide = (container, selector, content) => {
   const element = container.querySelector(selector);
-  if(content) {
+  if (content) {
     element.textContent = content;
     return;
   }
@@ -32,7 +31,7 @@ const createPopupImage = (images, imageContainer) => {
   }
   imageContainer.remove();
 };
-const createNewPost = ({offer, author}) => {
+const createNewPost = ({ offer, author }) => {
   const article = card.cloneNode(true);
   const photoContainer = article.querySelector('.popup__photos');
   addOrHide(article, '.popup__title', offer.title);
@@ -45,7 +44,6 @@ const createNewPost = ({offer, author}) => {
   addOrHide(article, '.popup__description', offer.description);
   createPopupImage(offer.photos, photoContainer);
   article.querySelector('.popup__description').src = author;
-  mapContainer.appendChild(article);
 };
 
 
