@@ -29,7 +29,10 @@ const getOffer = function () {
 };
 
 const getLocationValue = function () {
-  return `${getLat()} ${getLng()}`;
+  return {
+    lat: getLat(),
+    lng: getLng(),
+  };
 };
 
 const getRandomItem = () => ({

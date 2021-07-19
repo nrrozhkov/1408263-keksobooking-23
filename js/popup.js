@@ -44,13 +44,10 @@ const createNewPost = ({ offer, author }) => {
   addOrHide(article, '.popup__description', offer.description);
   createPopupImage(offer.photos, photoContainer);
   article.querySelector('.popup__description').src = author;
+  return article;
 };
 
 
 const articles = randomItems();
 
-articles.forEach((article) => {
-  createNewPost(article);
-});
-
-export { articles };
+export { articles, createNewPost };

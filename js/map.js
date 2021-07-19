@@ -1,7 +1,7 @@
-import { articles } from './popup.js';
+import { articles, createNewPost } from './popup.js';
 const USER_MARKER_LAT = 35.65952;
 const USER_MARKER_LNG = 139.78179;
-const CENTER_LAT =  35.6895000;
+const CENTER_LAT = 35.6895000;
 const CENTER_LNG = 139.6917100;
 const inputAddress = document.querySelector('#address');
 const articleForm = document.querySelector('.ad-form');
@@ -49,7 +49,7 @@ const setStartingLocation = (lat, lng) => `${lat}, ${lng}`;
 
 inputAddress.value = setStartingLocation(USER_MARKER_LAT, USER_MARKER_LNG);
 marker.on('moveend', (evt) => {
-  const {lat, lng} = evt.target.getLatLng();
+  const { lat, lng } = evt.target.getLatLng();
   inputAddress.value = setStartingLocation(lat.toFixed(5), lng.toFixed(5));
 });
 
@@ -59,12 +59,33 @@ resetButton.addEventListener('click', () => {
     lng: USER_MARKER_LNG,
   });
   map.setView({
-    lat:  CENTER_LAT,
-    lng:  CENTER_LNG,
+    lat: CENTER_LAT,
+    lng: CENTER_LNG,
   }, 10);
 });
 
-console.log(articles);
-const addPin = (address) => {
-  articles.address;
-}
+
+articles.forEach((location) => {
+  const points = location.location;
+  const { lat, lng } = points;
+  const usrIcon = L.icon({
+    iconUrl: '../img/pin.svg',
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+  });
+  const usrMarker = L.marker(
+    {
+      lat,
+      lng,
+    },
+    {
+      icon: usrIcon,
+    },
+  );
+
+  usrMarker
+    .addTo(map)
+    .bindPopup(
+      createNewPost(location),
+    );
+});
