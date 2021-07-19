@@ -1,19 +1,23 @@
+import { articles } from './popup.js';
 const USER_MARKER_LAT = 35.65952;
 const USER_MARKER_LNG = 139.78179;
+const CENTER_LAT =  35.6895000;
+const CENTER_LNG = 139.6917100;
 const inputAddress = document.querySelector('#address');
+const articleForm = document.querySelector('.ad-form');
+const mapFilters = document.querySelector('.map__filters');
+const resetButton = document.querySelector('.ad-form__reset');
+const enableControls = () => {
+  articleForm.classList.remove('ad-form--disabled');
+  mapFilters.classList.remove('map__filters--disabled');
+};
 const map = L.map('map-canvas')
   .on('load', () => {
-    const articleForm = document.querySelector('.ad-form');
-    const mapFilters = document.querySelector('.map__filters');
-    const enableControls = () => {
-      articleForm.classList.remove('ad-form--disabled');
-      mapFilters.classList.remove('map__filters--disabled');
-    };
     enableControls();
   })
   .setView({
-    lat: 35.6895000,
-    lng: 139.6917100,
+    lat: CENTER_LAT,
+    lng: CENTER_LNG,
   }, 10);
 
 L.tileLayer(
@@ -38,7 +42,7 @@ const marker = L.marker(
     icon: mainPinIcon,
   },
 );
-//Добавляем методом add.To координаты маркера на мапу
+
 marker.addTo(map);
 
 const setStartingLocation = (lat, lng) => `${lat}, ${lng}`;
@@ -46,5 +50,21 @@ const setStartingLocation = (lat, lng) => `${lat}, ${lng}`;
 inputAddress.value = setStartingLocation(USER_MARKER_LAT, USER_MARKER_LNG);
 marker.on('moveend', (evt) => {
   const {lat, lng} = evt.target.getLatLng();
-  inputAddress.value = setStartingLocation(lat, lng);// тут не понял, надо заново разбирать
+  inputAddress.value = setStartingLocation(lat.toFixed(5), lng.toFixed(5));
 });
+
+resetButton.addEventListener('click', () => {
+  marker.setLatLng({
+    lat: USER_MARKER_LAT,
+    lng: USER_MARKER_LNG,
+  });
+  map.setView({
+    lat:  CENTER_LAT,
+    lng:  CENTER_LNG,
+  }, 10);
+});
+
+console.log(articles);
+const addPin = (address) => {
+  articles.address;
+}

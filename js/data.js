@@ -40,3 +40,4 @@ const getRandomItem = () => ({
 
 const randomItems = () => new Array(SIMILAR_ITEM_COUNT).fill(null).map(() => getRandomItem());
 export {randomItems};
+

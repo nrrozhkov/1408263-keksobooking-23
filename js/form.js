@@ -11,16 +11,16 @@ const priceMap = {
   house: 5000,
   palace: 10000,
 };
-
-const mapLoadCheck = () => {
-  const articleForm = document.querySelector('.ad-form');
-  const mapFilters = document.querySelector('.map__filters');
-  const disableControls = () => {
-    articleForm.classList.add('ad-form--disabled');
-    mapFilters.classList.add('map__filters--disabled');
-  };
-  disableControls();
+const articleForm = document.querySelector('.ad-form');
+const mapFilters = document.querySelector('.map__filters');
+const disableControls = () => {
+  articleForm.classList.add('ad-form--disabled');
+  mapFilters.classList.add('map__filters--disabled');
 };
+
+
+disableControls();
+
 
 const checkinCheckoutCheck = (hour) => {
   const time = hour.value;
@@ -85,5 +85,3 @@ roomsCounter.addEventListener('change', () => {
     setDisabled(2), setDisabled(1), setDisabled(0), setEnabled(3);
   }
 });
-
-export { mapLoadCheck };

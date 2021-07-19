@@ -53,5 +53,4 @@ articles.forEach((article) => {
   createNewPost(article);
 });
 
-
 export { articles };
