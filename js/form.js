@@ -1,9 +1,9 @@
-const roomsCounter = document.querySelector("#room_number");
-const houseCapacity = document.querySelector("#capacity");
-const houseTypeInput = document.querySelector("#type");
-const overnightPrice = document.querySelector("#price");
-const checkinTime = document.querySelector("#timein");
-const checkoutTime = document.querySelector("#timeout");
+const roomsCounter = document.querySelector('#room_number');
+const houseCapacity = document.querySelector('#capacity');
+const houseTypeInput = document.querySelector('#type');
+const overnightPrice = document.querySelector('#price');
+const checkinTime = document.querySelector('#timein');
+const checkoutTime = document.querySelector('#timeout');
 const priceMap = {
   bungalow: 0,
   flat: 1000,
@@ -11,11 +11,11 @@ const priceMap = {
   house: 5000,
   palace: 10000,
 };
-const articleForm = document.querySelector(".ad-form");
-const mapFilters = document.querySelector(".map__filters");
+const articleForm = document.querySelector('.ad-form');
+const mapFilters = document.querySelector('.map__filters');
 const disableControls = () => {
-  articleForm.classList.add("ad-form--disabled");
-  mapFilters.classList.add("map__filters--disabled");
+  articleForm.classList.add('ad-form--disabled');
+  mapFilters.classList.add('map__filters--disabled');
 };
 
 disableControls();
@@ -32,10 +32,10 @@ const checkinCheckoutCheck = (hour) => {
   }
 };
 
-checkinTime.addEventListener("change", () => {
+checkinTime.addEventListener('change', () => {
   checkinCheckoutCheck(checkinTime);
 });
-checkoutTime.addEventListener("change", () => {
+checkoutTime.addEventListener('change', () => {
   checkinCheckoutCheck(checkoutTime);
 });
 checkinCheckoutCheck(checkinTime);
@@ -51,11 +51,11 @@ const valueValidity = () => {
   placeHolderChange();
   minPriceChange();
 };
-overnightPrice.addEventListener("input", () => {
+overnightPrice.addEventListener('input', () => {
   valueValidity();
 });
 
-houseTypeInput.addEventListener("input", () => {
+houseTypeInput.addEventListener('input', () => {
   valueValidity();
 });
 
@@ -68,7 +68,7 @@ const setEnabled = (value) => {
   const houseCapacityValue = houseCapacity.options[value];
   return (houseCapacityValue.disabled = false);
 };
-roomsCounter.addEventListener("change", () => {
+roomsCounter.addEventListener('change', () => {
   const roomValue = Number(roomsCounter.value);
   if (roomValue === 1) {
     setDisabled(3), setDisabled(1), setDisabled(0), setEnabled(2);
@@ -83,3 +83,16 @@ roomsCounter.addEventListener("change", () => {
     setDisabled(2), setDisabled(1), setDisabled(0), setEnabled(3);
   }
 });
+const setUserFormSubmit = (onSuccess) => {
+  articleForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const formData = new FormData(evt.target);
+    fetch(
+      'https://23.javascript.pages.academy/keksobooking',
+      {
+        method: 'POST',
+        body: formData,
+      },
+    );
+  });
+};

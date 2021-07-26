@@ -1,12 +1,19 @@
-const getServerData = fetch(
-  "https://23.javascript.pages.academy/keksobooking/data"
+const getArticles = (onSuccess, onError) => fetch('https://23.javascript.pages.academy/keksobooking/data',
+  {
+    method: 'GET',
+  },
 )
   .then((response) => {
     if (response.ok) {
-      response.json();
+      return response.json();
     }
-
     throw new Error(`${response.status} ${response.statusText}`);
+  })
+  .then((json) => {
+    onSuccess(json);
+  })
+  .catch((err) => {
+    onError(err);
   });
-console.log(getServerData);
-export { getServerData };
+ 
+export {getArticles};

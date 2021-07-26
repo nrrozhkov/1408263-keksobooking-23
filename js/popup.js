@@ -1,7 +1,7 @@
-import { randomItems } from './data.js';
 const photoWidth = 45;
 const photoHeight = 40;
 const card = document.querySelector('#card').content.querySelector('.popup');
+const successMsg = document.querySelector('#success').content.querySelector('.success');
 const HOUSING_TYPE_DICTIONARY = { bungalow: 'Бунгало', flat: 'Квартира', hotel: 'Отель', house: 'Дом', palace: 'Дворец' };
 const houseType = (name) => HOUSING_TYPE_DICTIONARY[name];
 const createPhotoElement = (element, parentContainer) => {
@@ -31,23 +31,25 @@ const createPopupImage = (images, imageContainer) => {
   }
   imageContainer.remove();
 };
-const createNewPost = ({ offer, author }) => {
+const createNewPost = (data) => {
   const article = card.cloneNode(true);
   const photoContainer = article.querySelector('.popup__photos');
-  addOrHide(article, '.popup__title', offer.title);
-  addOrHide(article, '.popup__text--address', offer.address);
-  addOrHide(article, '.popup__text--price', `${offer.price}₽/ночь`);
-  addOrHide(article, '.popup__type', houseType(offer.type));
-  addOrHide(article, '.popup__text--capacity', `${offer.rooms} комнаты для ${offer.guests} гостей`);
-  addOrHide(article, '.popup__text--time', `Заезд после ${offer.checkin} выезд до ${offer.checkout}`);
-  addOrHide(article, '.popup__features', offer.features);
-  addOrHide(article, '.popup__description', offer.description);
-  createPopupImage(offer.photos, photoContainer);
-  article.querySelector('.popup__description').src = author;
+  addOrHide(article, '.popup__title', data.offer.title);
+  addOrHide(article, '.popup__text--address', data.offer.address);
+  addOrHide(article, '.popup__text--price', `${data.offer.price}₽/ночь`);
+  addOrHide(article, '.popup__type', houseType(data.offer.type));
+  addOrHide(article, '.popup__text--capacity', `${data.offer.rooms} комнаты для ${data.offer.guests} гостей`);
+  addOrHide(article, '.popup__text--time', `Заезд после ${data.offer.checkin} выезд до ${data.offer.checkout}`);
+  addOrHide(article, '.popup__features', data.offer.features);
+  addOrHide(article, '.popup__description', data.offer.description);
+  createPopupImage(data.offer.photos, photoContainer);
   return article;
 };
 
+const createSuccessArticle = () => {
+  const article = successMsg.cloneNode(true);
+  console.log(article);
+};
 
-const articles = randomItems();
-
-export { articles, createNewPost };
+createSuccessArticle();
+export { createNewPost };
