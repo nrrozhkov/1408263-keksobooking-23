@@ -98,7 +98,6 @@ const addMapBalloons = () => {
       addMapMarker(pins);
     },
     (err) => {
-      console.log(err);
       const div = document.createElement('div');
       div.className = 'error';
       div.innerHTML = '<strong>Произошла ошибка при загрузке данных.</strong> Пожалуйста перезагрузите станицу или зайдите на сайт попозже.';

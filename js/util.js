@@ -50,5 +50,5 @@ const featuresListsShuffles = [...featuresLists].sort(() => Math.random() - 0.5)
 
 //Shuffeles photos array
 const photoShuffles = [...photos].sort(() => Math.random() - 0.5);
-export {getRandomPositiveInteger, getRandomPositiveFloat, getAvatar, getLat, getLng, getAddress, photoShuffles, featuresListsShuffles, photos};
 
+export {getRandomPositiveInteger, getRandomPositiveFloat, getAvatar, getLat, getLng, getAddress, photoShuffles, featuresListsShuffles, photos};

@@ -12,6 +12,7 @@ const priceMap = {
   palace: 10000,
 };
 const articleForm = document.querySelector('.ad-form');
+const clearButton = articleForm.querySelector('.ad-form__reset');
 const mapFilters = document.querySelector('.map__filters');
 const disableControls = () => {
   articleForm.classList.add('ad-form--disabled');
@@ -83,6 +84,31 @@ roomsCounter.addEventListener('change', () => {
     setDisabled(2), setDisabled(1), setDisabled(0), setEnabled(3);
   }
 });
+
+clearButton.addEventListener('click', () => {
+  const inputs = articleForm.querySelectorAll('input');
+  for (let num = 0; num < inputs.length; num++) {
+    inputs[num].value = '';
+  }
+});
+
+const showAlert = () => {
+  const errMsg = document.querySelector('#error').content.querySelector('.error');
+  const article = errMsg.cloneNode(true);
+  document.body.append(article);
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape' || evt.key === 'Esc') {
+      document.querySelector('.error').style.display = 'none';
+    }});
+  article.onclick = () => {
+    document.querySelector('.error').style.display = 'none';
+  };
+  const button = article.querySelector('.error__button');
+  button.addEventListener('click', () => {
+    document.querySelector('.error').style.display = 'none';
+  });
+};
+
 const setUserFormSubmit = (onSuccess) => {
   articleForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
@@ -93,6 +119,18 @@ const setUserFormSubmit = (onSuccess) => {
         method: 'POST',
         body: formData,
       },
-    );
+    )
+      .then((response) => {
+        if (response.ok) {
+          onSuccess();
+        } else {
+          showAlert();
+        }
+      })
+      .catch(() => {
+        showAlert();
+      });
   });
 };
+
+export {setUserFormSubmit};
