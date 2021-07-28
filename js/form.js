@@ -72,7 +72,7 @@ const setEnabled = (value) => {
 roomsCounter.addEventListener('change', () => {
   const roomValue = Number(roomsCounter.value);
   if (roomValue === 1) {
-    setDisabled(3), setDisabled(1), setDisabled(0), setEnabled(2);
+    setEnabled(2), setDisabled(3), setDisabled(1), setDisabled(0);
   }
   if (roomValue === 2) {
     setDisabled(3), setDisabled(0), setEnabled(3), setEnabled(1);
@@ -87,9 +87,9 @@ roomsCounter.addEventListener('change', () => {
 
 clearButton.addEventListener('click', () => {
   const inputs = articleForm.querySelectorAll('input');
-  for (let num = 0; num < inputs.length; num++) {
-    inputs[num].value = '';
-  }
+  inputs.forEach((item) =>{
+    item.value = '';
+  });
 });
 
 const showAlert = () => {

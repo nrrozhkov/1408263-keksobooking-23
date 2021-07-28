@@ -15,5 +15,5 @@ const getArticles = (onSuccess, onError) => fetch('https://23.javascript.pages.a
   .catch((err) => {
     onError(err);
   });
- 
+
 export {getArticles};
