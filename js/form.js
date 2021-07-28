@@ -12,7 +12,6 @@ const priceMap = {
   palace: 10000,
 };
 const articleForm = document.querySelector('.ad-form');
-const clearButton = articleForm.querySelector('.ad-form__reset');
 const mapFilters = document.querySelector('.map__filters');
 const disableControls = () => {
   articleForm.classList.add('ad-form--disabled');
@@ -72,7 +71,12 @@ const setEnabled = (value) => {
 roomsCounter.addEventListener('change', () => {
   const roomValue = Number(roomsCounter.value);
   if (roomValue === 1) {
-    setEnabled(2), setDisabled(3), setDisabled(1), setDisabled(0);
+    return {
+      setEnabled(2);
+      setDisabled(3);
+      setDisabled(1);
+      setDisabled(0);
+    }
   }
   if (roomValue === 2) {
     setDisabled(3), setDisabled(0), setEnabled(3), setEnabled(1);
@@ -85,12 +89,6 @@ roomsCounter.addEventListener('change', () => {
   }
 });
 
-clearButton.addEventListener('click', () => {
-  const inputs = articleForm.querySelectorAll('input');
-  inputs.forEach((item) =>{
-    item.value = '';
-  });
-});
 
 const showAlert = () => {
   const errMsg = document.querySelector('#error').content.querySelector('.error');

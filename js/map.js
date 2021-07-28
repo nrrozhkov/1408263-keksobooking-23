@@ -21,7 +21,7 @@ const map = L.map('map-canvas')
       lat: CENTER_LAT,
       lng: CENTER_LNG,
     },
-    10
+    10,
   );
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -42,7 +42,7 @@ const marker = L.marker(
   {
     draggable: true,
     icon: mainPinIcon,
-  }
+  },
 );
 
 marker.addTo(map);
@@ -56,6 +56,10 @@ marker.on('moveend', (evt) => {
 });
 
 resetButton.addEventListener('click', () => {
+  const inputs = articleForm.querySelectorAll('input');
+  inputs.forEach((item) =>{
+    item.value = '';
+  });
   marker.setLatLng({
     lat: USER_MARKER_LAT,
     lng: USER_MARKER_LNG,
@@ -65,12 +69,13 @@ resetButton.addEventListener('click', () => {
       lat: CENTER_LAT,
       lng: CENTER_LNG,
     },
-    10
+    10,
   );
 });
 
 const addMapMarker = (places) =>{
-  places.forEach((location) => {
+  const newPlace = places.slice(0, 10);
+  newPlace.forEach((location) => {
     const points = location.location;
     const { lat, lng } = points;
     const usrIcon = L.icon({
@@ -85,7 +90,7 @@ const addMapMarker = (places) =>{
       },
       {
         icon: usrIcon,
-      }
+      },
     );
 
     usrMarker.addTo(map).bindPopup(createNewPost(location));
@@ -98,6 +103,7 @@ const addMapBalloons = () => {
       addMapMarker(pins);
     },
     (err) => {
+      err;
       const div = document.createElement('div');
       div.className = 'error';
       div.innerHTML = '<strong>Произошла ошибка при загрузке данных.</strong> Пожалуйста перезагрузите станицу или зайдите на сайт попозже.';

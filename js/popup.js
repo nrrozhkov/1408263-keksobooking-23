@@ -79,4 +79,4 @@ const createSuccessArticle = () => {
   };
 };
 
-export { createNewPost, createSuccessArticle };
+export { createNewPost, createSuccessArticle, HOUSING_TYPE_DICTIONARY };
