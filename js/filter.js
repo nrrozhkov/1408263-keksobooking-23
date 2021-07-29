@@ -1,6 +1,10 @@
-const houseInput = document.querySelector('#housing-type');
-
-houseInput.addEventListener('change', () => {
-  // if (houseInput.value) {};
-});
-
+// const houseTypeFilter = (array) => {
+//   const houseType = document.querySelector('#housing-type');
+//   houseType.addEventListener('change', () => {
+//     if(houseType.value === 'bungalow') {
+//       console.log(1);
+//     }
+//   });
+// };
+//
+// export { houseTypeFilter };

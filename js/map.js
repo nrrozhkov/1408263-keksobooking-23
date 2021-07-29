@@ -1,5 +1,6 @@
 import { createNewPost } from './popup.js';
 import { getArticles } from './fetch.js';
+// import  {houseTypeFilter } from './filter.js';
 const USER_MARKER_LAT = 35.65952;
 const USER_MARKER_LNG = 139.78179;
 const CENTER_LAT = 35.6895;
@@ -100,6 +101,7 @@ const addMapMarker = (places) =>{
 const addMapBalloons = () => {
   getArticles(
     (pins) => {
+      // const newPins = houseTypeFilter(pins);
       addMapMarker(pins);
     },
     (err) => {

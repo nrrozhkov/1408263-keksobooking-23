@@ -63,7 +63,7 @@ const setDisabled = (value) => {
   const houseCapacityValue = houseCapacity.options[value];
   return (houseCapacityValue.disabled = true);
 };
-setDisabled(0);
+// setDisabled(0);
 const setEnabled = (value) => {
   const houseCapacityValue = houseCapacity.options[value];
   return (houseCapacityValue.disabled = false);
@@ -71,12 +71,7 @@ const setEnabled = (value) => {
 roomsCounter.addEventListener('change', () => {
   const roomValue = Number(roomsCounter.value);
   if (roomValue === 1) {
-    return {
-      setEnabled(2);
-      setDisabled(3);
-      setDisabled(1);
-      setDisabled(0);
-    }
+    setDisabled(0), setDisabled(1), setDisabled(3), setEnabled(2);
   }
   if (roomValue === 2) {
     setDisabled(3), setDisabled(0), setEnabled(3), setEnabled(1);
